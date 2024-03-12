@@ -7,7 +7,7 @@ function Favoritos() {
   return (
     <>
       <>
-        <Banner imagem={'favorito'} />
+        <Banner imagem={'favoritos'} />
         <Titulo>
           <h1>Meus Favoritos</h1>
         </Titulo>
