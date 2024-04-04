@@ -2,26 +2,22 @@ import Banner from 'components/Banner';
 import styles from './Favoritos.module.css';
 import Titulo from 'components/Titulo';
 import Card from 'components/Card';
+import { useFavoritoContext } from 'contexts/Favoritos';
 
 function Favoritos() {
+  const { favorito } = useFavoritoContext();
   return (
     <>
-      <>
-        <Banner imagem={'favoritos'} />
-        <Titulo>
-          <h1>Meus Favoritos</h1>
-        </Titulo>
+      <Banner imagem={'favoritos'} />
+      <Titulo>
+        <h1>Meus Favoritos</h1>
+      </Titulo>
 
-        <section className={styles.container}>
-          <Card
-            titulo='O labirinto do Logcat'
-            capa='https://caelum-online-public.s3.amazonaws.com/2802-react-praticando/img2.png'
-            link='https://www.youtube.com/embed/ypvGqZGJBls'
-            key='1'
-          />
-          ;
-        </section>
-      </>
+      <section className={styles.container}>
+        {favorito.map((fav) => {
+          return <Card {...fav} key={fav.id} />;
+        })}
+      </section>
     </>
   );
 }
