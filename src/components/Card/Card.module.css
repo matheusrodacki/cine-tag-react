@@ -19,3 +19,8 @@
 .favoritar{
   width: 25px;
 }
+.link{
+  text-align: left;
+  text-decoration: none;
+  color: var(--preto);
+}
