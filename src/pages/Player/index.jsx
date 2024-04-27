@@ -2,15 +2,22 @@ import styles from './Player.module.css';
 import Banner from 'components/Banner';
 import Titulo from 'components/Titulo';
 import { useParams } from 'react-router-dom';
-import videos from 'json/db.json';
 import NaoEncontrada from 'pages/NaoEncontada';
+import { useEffect, useState } from 'react';
 
 function Player() {
+  const [video, setVideo] = useState();
   const parametros = useParams();
 
-  const video = videos.find((video) => {
-    return video.id === Number(parametros.id);
-  });
+  useEffect(() => {
+    fetch(
+      `https://my-json-server.typicode.com/matheusrodacki/cine-tag-api/videos?id=${parametros.id}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setVideo(...data);
+      });
+  }, []);
 
   if (!video) {
     return <NaoEncontrada />;
